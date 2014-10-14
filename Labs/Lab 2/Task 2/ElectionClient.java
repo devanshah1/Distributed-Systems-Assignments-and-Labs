@@ -58,7 +58,7 @@ public class ElectionClient
                 Vector<Object> electionVoterResults = electionVoter.result () ;
                 
                 System.out.println ( "Current Election Results are: " ) ;
-                electionVoterResults.toString () ;
+
                 // Loop through the retrieved vector of objects and convert them to string and print to the client.
                 for ( int i = 0; i < electionVoterResults.size(); i++ )
                 {

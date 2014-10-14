@@ -1,6 +1,3 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
@@ -55,27 +52,10 @@ public class ElectionImplementation extends UnicastRemoteObject implements Elect
         }
         else {
             
-            // Add the users vote into the main HashMao
+            // Add the users vote into the main HashMap
             votesCasted.put ( new Integer ( voterNumber ), candidateName ) ;
+            System.out.println ( "Vote for \"" + candidateName + "\"successfully casted by \"" + voterNumber ) ;
         }
-        
-        // variable deceleration 
-        ObjectOutputStream electionRawDataOut ;
-        
-        /*
-         * Open up a Object stream for a file where the current standing results of the election are stored.
-         * Note: The raw data is stored into the file and the results are stored to the file in serialized 
-         *       form to avoid tampering. 
-         */
-        try
-        {
-            // Construct the stream to write the HashMap of votes casted already.
-            electionRawDataOut = new ObjectOutputStream ( new FileOutputStream ( "ElectionResultsRawData.ser" ) ) ;
-            electionRawDataOut.writeObject ( votesCasted ) ; // Write HashMap to stream
-            electionRawDataOut.flush() ; // flush the stream to make sure everything is written.
-            electionRawDataOut.close() ; // Close the stream
-        }
-        catch ( IOException e ) { e.printStackTrace() ; }
         
         // return true on a successful vote cast   
         return true ;

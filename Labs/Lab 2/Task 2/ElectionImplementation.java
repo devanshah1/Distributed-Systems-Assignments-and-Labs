@@ -45,7 +45,7 @@ public class ElectionImplementation extends UnicastRemoteObject implements Elect
      * the same voter's number is not used to cast a vote.
      */
     @Override
-    public boolean vote ( String candidateName, int voterNumber )
+    public synchronized boolean vote ( String candidateName, int voterNumber )
     {
         // Only add the vote into the main hashmap if the voter's number does not already exist.
         if ( votesCasted.containsKey ( voterNumber ) )
@@ -94,7 +94,7 @@ public class ElectionImplementation extends UnicastRemoteObject implements Elect
      *     4. Return the candidateResults vector.
      */
     @Override
-    public Vector<Object> result () throws RemoteException
+    public synchronized Vector<Object> result () throws RemoteException
     {
         // Declare vector and HashMap 
         Vector <Object> candidateResults             = new Vector<Object>() ;
