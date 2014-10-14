@@ -1,0 +1,21 @@
+Compiling Question 2 
+1.	Extract the directory Distributed Systems – Assignment 1 Question 2 from the submission zip
+2.	CD to directory “Distributed Systems – Assignment 1 Question 2” in command line
+3.	Run javac * under this directory 
+4.	Running TCP 
+   a.	Open another command window for the server ( cd into the same location)
+   b.	Type “java TCPServer 25” the number changes depending on the number of bytes per message in kilobytes
+   c.	Type “java TCPClient localhost 100000 25” in the other windows terminal 
+5.	Running UDP
+   a.	Open another command window for the server ( cd into the same location)
+   b.	Type “java UDPServer” to start the server
+   c.	Type “java UDPClient localhost 100000 25” in the other windows terminal.
+
+Compiling Question 4
+1.	Extract the directory Distributed Systems – Assignment 1 Question 4 from the submission zip
+2.	CD to directory “Distributed Systems – Assignment 1 Question 4” in command window
+3.	Run javac * under this directory
+4.	Open another command window
+5.	Run “java Server” in one window
+6.	Run “Java Client” in the other window 
+7.	Observe the results
