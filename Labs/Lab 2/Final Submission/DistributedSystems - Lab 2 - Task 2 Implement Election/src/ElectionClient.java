@@ -92,7 +92,6 @@ public class ElectionClient
                 // Close the buffer reader.
                 userInput.close() ;
             }
-            
         }
         // Catch the exception and provide the necessary information to the user.
         catch ( RemoteException e ) { System.out.println ( "Remote Exception: " + e.getMessage() ) ; e.printStackTrace () ; }
