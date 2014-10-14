@@ -59,7 +59,7 @@ public class ElectionImplementation extends UnicastRemoteObject implements Elect
             
             // Add the users vote into the main HashMap
             votesCasted.put ( new Integer ( voterNumber ), candidateName ) ;
-            System.out.println ( "Vote for \"" + candidateName + "\"successfully casted by \"" + voterNumber ) ;
+            System.out.println ( "Vote for \"" + candidateName + "\" successfully casted by \"" + voterNumber + "\"" ) ;
         }
         
         // variable deceleration 
