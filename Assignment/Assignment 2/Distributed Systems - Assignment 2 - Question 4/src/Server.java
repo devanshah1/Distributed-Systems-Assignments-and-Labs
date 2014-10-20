@@ -45,8 +45,7 @@ public class Server
         }
         catch ( RemoteException e )
         {
-            Registry registry =
-                    LocateRegistry.createRegistry ( RMIPortNum );
+            Registry registry = LocateRegistry.createRegistry ( RMIPortNum );
         }
     }
 

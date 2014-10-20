@@ -6,12 +6,16 @@ public class ServerImplication extends UnicastRemoteObject implements
         ServerInterface
 {
 
-    private Vector clientList;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Vector <ClientInterface> clientList;
 
     public ServerImplication () throws RemoteException
     {
         super ();
-        clientList = new Vector ();
+        clientList = new Vector <ClientInterface> ();
     }
 
     public String sayHello ()

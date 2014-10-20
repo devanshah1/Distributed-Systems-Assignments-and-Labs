@@ -1,9 +1,13 @@
 import java.rmi.*;
 import java.rmi.server.*;
 
-public class ClientImplication extends UnicastRemoteObject
-        implements ClientInterface
+public class ClientImplication extends UnicastRemoteObject implements ClientInterface
 {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     public ClientImplication () throws RemoteException
     {
