@@ -55,14 +55,11 @@ class VoteProxy
         }
     }
 
-    public static byte [] doOperation ( RemoteObjectRef o, Method m,
-            byte [] arguments )
+    public static byte [] doOperation ( RemoteObjectRef o, Method m, byte [] arguments )
     {
         try
         {
-            Object result = m.invoke ( o, new Object [] {
-                    new String ( arguments, "UTF-8" ),
-                    fromByteArray ( arguments ) } );
+            Object result = m.invoke ( o, new Object [] { new String ( arguments, "UTF-8" ), fromByteArray ( arguments ) } );
 
         }
         catch ( IllegalAccessException e )

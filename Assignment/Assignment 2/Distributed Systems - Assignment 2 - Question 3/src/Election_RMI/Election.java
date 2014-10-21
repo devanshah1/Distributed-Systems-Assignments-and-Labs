@@ -13,4 +13,3 @@ package Election_RMI;
 	//void vote(in string name, in long number);
 	//void result(out string name, out long votes);
 	
-	

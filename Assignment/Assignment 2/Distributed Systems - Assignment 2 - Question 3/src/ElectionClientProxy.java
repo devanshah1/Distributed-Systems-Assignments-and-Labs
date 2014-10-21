@@ -25,6 +25,7 @@ public class ElectionClientProxy
      */
     public static void main ( String args[] )
     {
+        
         // Variable deceleration 
         String hostname      = "localhost" ;  // Default host to use 
         int portnumber       = 1099 ;         // Default rmi port
