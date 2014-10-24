@@ -2,6 +2,7 @@ public class LineProducer implements Runnable
 {
     public LineProducer ( FileIterator input, MessageQueue <Line> q1 )
     {
+        
     }
 
     /**
@@ -11,7 +12,6 @@ public class LineProducer implements Runnable
     public void run ()
     {
         // TODO Auto-generated method stub
-
     }
 
 }
