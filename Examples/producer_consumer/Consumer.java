@@ -1,4 +1,3 @@
-package producer_consumer_example;
 import java.util.concurrent.Semaphore;
 
 public class Consumer extends Thread {

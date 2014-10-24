@@ -1,8 +1,22 @@
+/**
+ * 
+ * @author Devan Shah 100428864
+ *
+ */
 public class LineProducer implements Runnable
 {
-    public LineProducer ( FileIterator input, MessageQueue <Line> q1 )
+    FileIterator linesInput ;
+    MessageQueue messagesQueue ;
+    
+    /**
+     * 
+     * @param input
+     * @param messagingQueue
+     */
+    public LineProducer ( FileIterator input, MessageQueue messagingQueue )
     {
-        
+        this.linesInput    = input ;
+        this.messagesQueue = messagingQueue ;
     }
 
     /**
@@ -11,7 +25,10 @@ public class LineProducer implements Runnable
     @Override
     public void run ()
     {
-        // TODO Auto-generated method stub
+        for ( Line line : linesInput ) 
+        {
+            messagesQueue.putMessage ( line ) ;
+        }
     }
 
 }
