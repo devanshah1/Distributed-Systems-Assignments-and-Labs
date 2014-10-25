@@ -1,61 +1,59 @@
 import java.util.concurrent.BlockingQueue;
 
 /**
- * 
+ * This class is used to store the messaging queue for producing and consuming.
  * @author Devan Shah 100428864
  *
  */
 class MessageQueue
 {
+    // Declare the global blocking queue for the class
     public BlockingQueue<Line> messagingQueue ;
     
     /**
-     * 
-     * @param messagingQueue
+     * This constructor is used to store the passed blocking queue into the 
+     * global blocking queue.
+     * @param messagingQueue - The initialization of the blocking queue
      */
     public MessageQueue ( BlockingQueue<Line> messagingQueue ) 
     {
+        // Store the input on object creation in the global messagingQueue variable.
         this.messagingQueue = messagingQueue ;
     }
     
     /**
-     * 
-     * @param q
+     * This function is used to put the line objects into the messaging queue (blocking queue)
+     * @param lineObject - This is the line object that will go into the messaging queue.
      */
-    public void putMessage ( Line q ) 
+    public void putMessage ( Line lineObject ) 
     {
         try
         {
-            messagingQueue.put ( q ) ;
+            // Place the line object into the queue to make it ready for consuming
+            messagingQueue.put ( lineObject ) ;
         }
         // Catch the exception and provide the necessary information to the user.
         catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }
     }
     
     /**
-     * 
+     * This function is used to take the line object out of the messaging queue
+     * and return it to the caller.
+     * @return lineExtract - the first element that is available in the messaging queue
      */
     public Line takeMessage () 
     {
+        // Declare the line that is extracted as a Line object
         Line lineExtract = null ;
         
         try
         {
+            // Take the first Line object out of the messaging queue
             lineExtract = messagingQueue.take () ;
         }
         // Catch the exception and provide the necessary information to the user.
         catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }
         
         return lineExtract ;
-    }
-    
-    /**
-     * 
-     * @return
-     */
-    public int size () 
-    {
-        return messagingQueue.size () ;
-    }
-    
+    }    
 }

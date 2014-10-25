@@ -35,7 +35,7 @@ public class FileIterator implements Iterable <Line>
     public FileIterator ( String filename, int repeat )
     {   
         
-        //For loop used to read the file multiple times depending on the repeat value.
+        // For loop used to read the file multiple times depending on the repeat value.
         for ( int i = 0; i < repeat; i++ )
         {
            // Variable declaration
@@ -60,13 +60,6 @@ public class FileIterator implements Iterable <Line>
                  linesExtractor.add ( lineObject ) ;
                  lineCount++ ; // Increase the line count on every read.
               }
-              
-              /**
-               * Add the last line to the collection as a Line object this
-               * is used to determine when the last line of file is reached.
-               */
-              Line lineObject = new Line ( null, -1 ) ;
-              linesExtractor.add ( lineObject ) ;
               
               // Close the buffer reader
               bufferReader.close () ;
