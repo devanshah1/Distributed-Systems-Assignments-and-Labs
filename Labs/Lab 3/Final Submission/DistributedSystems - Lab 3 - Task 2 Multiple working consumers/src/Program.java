@@ -101,7 +101,7 @@ public class Program
         {
             try
             {
-                t.join () ;
+               t.join () ;
             }
             // Catch the exception and provide the necessary information to the user.
             catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }

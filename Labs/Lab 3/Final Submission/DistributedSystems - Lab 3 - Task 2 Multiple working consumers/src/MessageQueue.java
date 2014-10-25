@@ -55,5 +55,15 @@ class MessageQueue
         catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }
         
         return lineExtract ;
-    }    
+    }
+    
+    /**
+     * Get the size of the messaging queue to determine when done
+     * @return
+     */
+    public int size ()
+    {
+        // return the size of the queue
+        return messagingQueue.size () ;
+    }
 }
