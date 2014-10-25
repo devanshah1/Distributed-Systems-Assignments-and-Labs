@@ -16,6 +16,7 @@ public class Program
     public static MessageQueue messagingQueue ;
     public static String queryWord ;
     public static int editDistanceThreshold ;
+    public static MessageQueue resultsMessagingQueue ;
     
     /**
      * This is the main program that is used to perform all the action listed in the class definition above.
@@ -25,6 +26,7 @@ public class Program
      *                         (default is outputFile.txt)
      *             - args[3] - query word used by the consumer to to filter the lines by edit distance.
      *             - args[4] - edit distance threshold
+     *             - args[5] - number of workers for the consumer
      */
     public static void main ( String [] args )
     {
@@ -32,8 +34,9 @@ public class Program
         String inputFileName  = "inputFile.txt" ;
         int repeat            = 1 ;
         String outputFileName = "outputFile.txt" ;
-        queryWord             = "systems" ;
+        queryWord             = "hello" ;
         editDistanceThreshold = 3 ;
+        int numWorkers        = 2 ;
         
         /**
          * Override the default values for inputFileName, repeat, outputFileName, 
@@ -44,6 +47,7 @@ public class Program
         if ( args[2].length () != 0 ) { outputFileName        = args [2] ; }
         if ( args[3].length () != 0 ) { queryWord             = args [3] ; }
         if ( args[4].length () != 0 ) { editDistanceThreshold = Integer.parseInt ( args [4] ) ; }
+        if ( args[5].length () != 0 ) { numWorkers            = Integer.parseInt ( args [5] ) ; }
        
         /**
          *  Construct the files iterator which contains all the lines in the file.
@@ -53,20 +57,35 @@ public class Program
         
         // Create the blocking queue based on the number of lines that are read from the file
         BlockingQueue <Line> blockingMessagingQueue = new ArrayBlockingQueue <Line> ( lines.linesExtractor.size () + 1 ) ;
+        BlockingQueue <Line> resultsBlockingMessagingQueue = new ArrayBlockingQueue <Line> ( lines.linesExtractor.size () + 1 ) ;
         
         // Create the messaging queue with the empty blocking queue.
-        messagingQueue = new MessageQueue ( blockingMessagingQueue ) ;
+        messagingQueue        = new MessageQueue ( blockingMessagingQueue ) ;
+        resultsMessagingQueue = new MessageQueue ( resultsBlockingMessagingQueue ) ;
         
         // Create the producer
-        LineProducer p1 = new LineProducer ( lines ) ;
+        LineProducer lineProducer = new LineProducer ( lines ) ;
         
-        // Create the consumer
-        LineConsumer c1 = new LineConsumer ( outputFileName ) ;
+        // Create the line consumer
+        LineConsumer lineConsumer = new LineConsumer ( ) ;
         
-        // Place the producer and consumer in thread containers
+        // Create the result consumer
+        ResultConsumer resultConsumer = new ResultConsumer ( outputFileName ) ;
+        
+        // Construct the array of threads that will be executed
         List <Thread> threads = new ArrayList <Thread> () ;
-        threads.add ( new Thread ( p1 ) ) ;
-        threads.add ( new Thread ( c1 ) ) ;
+        
+        // Place the Line producer in thread containers
+        threads.add ( new Thread ( lineProducer ) ) ;
+        
+        // Create the Line Consumer threads depending on the number of workers set by user
+        for ( int i = 0; i < numWorkers; i++ )
+        {
+           threads.add ( new Thread ( lineConsumer ) ) ;
+        }
+        
+        // Place the result consumer in thread containers
+        threads.add ( new Thread ( resultConsumer ) ) ;
         
         // Start counting how long it will take to run the producing and consuming
         long start = System.currentTimeMillis () ;

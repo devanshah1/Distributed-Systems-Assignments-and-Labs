@@ -44,7 +44,7 @@ public class LineProducer implements Runnable
              * Make sure that the users know was is going on by printing that the producer is 
              * doing something.
              */
-            System.out.println ( "Producer is Producing: " + lineChange.content ) ;
+            System.out.println ( "Line Producer is Producing: " + lineChange.content ) ;
             
             // Store the line into the messagingQueue
             Program.messagingQueue.putMessage ( lineChange ) ;
