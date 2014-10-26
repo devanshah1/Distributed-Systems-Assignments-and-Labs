@@ -23,17 +23,17 @@ public class LineConsumer implements Runnable
     @Override
     public void run ()
     {
-       // Declare the line object that will be retrieved from the messaging queue.
-       Line currentLine ;
-                 
+        // Declare the line object that will be retrieved from the messaging queue.
+        Line currentLine ;
+        
        /**
         *  Loop through the messaging queue until the end of file is found in the queue.
         *  While the loop iterates it pulls each of the Line objects from the messaging
         *  queue and stores it in currentLine, which is later used to check for edit
         *  distance before writing it to the output file.
         */
-        while ( !( ( currentLine = Program.messagingQueue.takeMessage () ).isEnd () ) && Program.messagingQueue.size () > 0 )
-        {
+        while ( ( ( currentLine = Program.messagingQueue.takeMessage () ) != null ) && !currentLine.isEnd() )
+        {   
            // Get the line content from the Line objects
            String lineConetent = currentLine.content ;
                
@@ -64,9 +64,5 @@ public class LineConsumer implements Runnable
                }
            }
         }
-        
-        // Add end of file message to the queue showing that we have finished producing the messages.
-        Line endOfFileMessage = new Line ( "END-OF-FILE", -1 ) ;
-        Program.resultsMessagingQueue.putMessage ( endOfFileMessage ) ;
     }    
 }

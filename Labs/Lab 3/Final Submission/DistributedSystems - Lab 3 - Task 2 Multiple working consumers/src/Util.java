@@ -34,16 +34,16 @@ public class Util
         int lengthString2 = s2.length () ;
         
         // Construct a 2D array of int values that will be used to find the edit distance
-        int [][] editDistance = new int[lengthString1][lengthString2] ;
+        int [][] editDistance = new int[lengthString1 + 1][lengthString2 + 1] ;
         
         // Loop through and fill the edit distance with the incremental length of string 1
-        for ( int i = 0; i < lengthString1; i++ )
+        for ( int i = 0; i <= lengthString1; i++ )
         {
             editDistance [i] [0] = i ;
         }
         
         // Loop through and fill the edit distance with the incremental length of string 2
-        for ( int j = 0; j < lengthString2; j++ )
+        for ( int j = 1; j <= lengthString2; j++ )
         {
             editDistance [0] [j] = j ;
         }
@@ -52,22 +52,20 @@ public class Util
          *  Loop through the strings and compare character by character to determine the character switches
          *  that are needed to perform the action of changing string two into string 1.
          */
-        for ( int i = 1; i < lengthString1; i++ )
+        for ( int i = 1; i <= lengthString1; i++ )
         {
-            for ( int j = 1; j < lengthString2; j++ )
+            for ( int j =1; j <= lengthString2; j++ )
             {
-                if ( s1.charAt ( i - 1 ) == s2.charAt ( j - 1 ) ) 
-                {
-                    editDistance [i] [j] = editDistance [i - 1] [j - 1] ;
-                }
-                else 
-                {
-                    editDistance [i] [j] = 1 + Math.min ( Math.min ( editDistance [i] [j - 1], editDistance [i - 1] [j] ), editDistance [i - 1] [j - 1] ) ;    
-                }
+                editDistance [i] [j] = Math.min ( Math.min ( editDistance [i - 1] [j] + 1, 
+                                                             editDistance [i][j - 1] + 1 
+                                                           ),
+                                                  editDistance [i - 1][j - 1] + ( ( s1.charAt ( i - 1 ) == s2.charAt ( j - 1 ) ) ? 0 : 1 )
+                                                ) ;
+                
             }
         }
         
         // return the final edit distance 
-        return editDistance [lengthString1-1] [lengthString2-1] ;
+        return ( editDistance [lengthString1] [lengthString2] ) ;
     }
 }

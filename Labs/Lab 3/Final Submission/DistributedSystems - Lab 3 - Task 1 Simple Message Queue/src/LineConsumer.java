@@ -46,7 +46,7 @@ public class LineConsumer implements Runnable
              *  queue and stores it in currentLine, which is later used to check for edit
              *  distance before writing it to the output file.
              */
-            while ( !( ( currentLine = Program.messagingQueue.takeMessage () ).isEnd () ) )
+            while ( ( ( currentLine = Program.messagingQueue.takeMessage () ) != null ) && !currentLine.isEnd() )
             {
                 // Get the line content from the Line objects
                 String lineConetent = currentLine.content ;
@@ -67,7 +67,7 @@ public class LineConsumer implements Runnable
                     if ( editDistance <= Program.editDistanceThreshold )
                     {
                         // Make sure that the user knows that the program is consuming stuff
-                        System.out.println ( "Consumer is Consuming: " + lineConetent ) ;
+                        System.out.println ( "Line Consumer is Consuming: " + lineConetent ) ;
                         
                         /**
                          *  Write the line to the file since we found a single word that is k 

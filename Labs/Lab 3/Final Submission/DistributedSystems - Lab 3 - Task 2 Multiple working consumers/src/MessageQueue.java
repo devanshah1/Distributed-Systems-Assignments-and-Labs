@@ -1,4 +1,5 @@
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class is used to store the messaging queue for producing and consuming.
@@ -49,7 +50,7 @@ class MessageQueue
         try
         {
             // Take the first Line object out of the messaging queue
-            lineExtract = messagingQueue.take () ;
+            lineExtract = messagingQueue.poll ( 2, TimeUnit.MILLISECONDS ) ;
         }
         // Catch the exception and provide the necessary information to the user.
         catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }

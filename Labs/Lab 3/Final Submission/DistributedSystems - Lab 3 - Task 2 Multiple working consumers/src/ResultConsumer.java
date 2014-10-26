@@ -46,7 +46,7 @@ public class ResultConsumer implements Runnable
              *  queue and stores it in currentLine, which is later used to check for edit
              *  distance before writing it to the output file.
              */
-            while ( !( ( currentLine = Program.resultsMessagingQueue.takeMessage () ).isEnd () ) )
+            while ( ( ( currentLine = Program.resultsMessagingQueue.takeMessage () ) != null ) && !currentLine.isEnd() )
             {
                // Get the line content from the Line objects
                String lineConetent = currentLine.content ;
