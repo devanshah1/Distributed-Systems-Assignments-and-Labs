@@ -54,14 +54,13 @@ public class Util
          */
         for ( int i = 1; i <= lengthString1; i++ )
         {
-            for ( int j =1; j <= lengthString2; j++ )
+            for ( int j = 1; j <= lengthString2; j++ )
             {
                 editDistance [i] [j] = Math.min ( Math.min ( editDistance [i - 1] [j] + 1, 
                                                              editDistance [i][j - 1] + 1 
                                                            ),
                                                   editDistance [i - 1][j - 1] + ( ( s1.charAt ( i - 1 ) == s2.charAt ( j - 1 ) ) ? 0 : 1 )
                                                 ) ;
-                
             }
         }
         

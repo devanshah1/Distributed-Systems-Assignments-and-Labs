@@ -47,20 +47,30 @@ public class LineConsumer implements Runnable
               int editDistance = Util.editDistance ( Program.queryWord,  words[i] ) ;
                    
               /**
+               * Don't put results that contain "distributed systems".
+               */
+              if ( lineConetent.contains ( "distributed systems" ) ) 
+              {
+                  // Make sure that the user knows that the program is consuming stuff
+                  System.out.println ( "Line Consumer found \"distributed systems\": " + lineConetent ) ;
+                  
+                  break ;
+              }
+              /**
                *  Only write to the outputFile if the edit distance is less then or equal to the 
                *  edit distance threshold that is provided by the user.
                */
-               if ( editDistance <= Program.editDistanceThreshold )
-               {
-                  // Make sure that the user knows that the program is consuming stuff
-                  System.out.println ( "Line Consumer is Consuming: " + lineConetent ) ;
+              else if ( editDistance <= Program.editDistanceThreshold )
+              {
+                 // Make sure that the user knows that the program is consuming stuff
+                 System.out.println ( "Line Consumer is Consuming: " + lineConetent ) ;
                         
-                  /**
-                   *  Write the line to the file since we found a single word that is k 
-                   *  edit distance from the query word in the line.
-                   */
-                   Program.resultsMessagingQueue.putMessage ( currentLine ) ;
-                   break ; // Stop looking for more words, we only need one.
+                 /**
+                  *  Write the line to the file since we found a single word that is k 
+                  *  edit distance from the query word in the line.
+                  */
+                  Program.resultsMessagingQueue.putMessage ( currentLine ) ;
+                  break ; // Stop looking for more words, we only need one.
                }
            }
         }
