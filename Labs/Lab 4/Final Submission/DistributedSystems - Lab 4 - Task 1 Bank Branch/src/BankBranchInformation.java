@@ -15,31 +15,32 @@ public class BankBranchInformation implements Serializable
     // Variable Deceleration
     String bankBranchName;
     String bankBranchLocation;
-    float bankBranchInitialBalance;
-    float bankBranchWorkingBalance;
+    double bankBranchInitialBalance;
+    double bankBranchWorkingBalance;
     int bankBranchNumber;
     
     /**
-     *  
-     * @param bankBranchName
-     * @param bankBranchNumber
-     * @param bankBranchLocation
-     * @param bankBranchBalance
+     *  Constructor for the BankBranchInformation class.
+     *  This constructor is used to initialize global object variables. 
+     * @param bankBranchName     - Name of the branch
+     * @param bankBranchNumber   - The branches ID numer
+     * @param bankBranchLocation - The location of the branch
+     * @param bankBranchBalance  - The initial balnce the branch has at start.
      */
-    public BankBranchInformation( String bankBranchName, int bankBranchNumber, String bankBranchLocation, float bankBranchBalance) 
+    public BankBranchInformation( String bankBranchName, int bankBranchNumber, String bankBranchLocation, double bankBranchInitialBalance) 
     {
         // Store values in the global variable
         this.bankBranchName            = bankBranchName;
         this.bankBranchNumber          = bankBranchNumber;
         this.bankBranchLocation        = bankBranchLocation;
-        this.bankBranchInitialBalance  = bankBranchBalance;
+        this.bankBranchInitialBalance  = bankBranchInitialBalance;
         
         // On Object initialization set the initial balance to the working balance
-        this.bankBranchWorkingBalance  = bankBranchBalance;
+        this.bankBranchWorkingBalance  = bankBranchInitialBalance;
     }
     
     /**
-     * 
+     * This functions is used to provide description of the bank branch
      */
     @Override
     public String toString() 
@@ -54,25 +55,25 @@ public class BankBranchInformation implements Serializable
     }
     
     /**
-     * 
-     * @param addToBalance
+     * This functions is used to add to the working balance.
+     * @param addToBalance - amount of money to add to the branches working balance
      */
-    public void addToWorkingBalance(float addToBalance ) 
+    public void addToWorkingBalance(double addToBalance ) 
     {
         bankBranchWorkingBalance += addToBalance ;
     }
     
     /**
-     * 
-     * @param subFromBalance
+     * This function is used to subtract from the working balance.
+     * @param subFromBalance - amount of money to subtract from the branches working balance
      */
-    public void subtractFromWorkingBalance ( float subFromBalance ) 
+    public void subtractFromWorkingBalance ( double subFromBalance ) 
     {
         bankBranchWorkingBalance -= subFromBalance ;
     }
     
     /**
-     * 
+     * Return the branch name
      * @return
      */
     public String getBranchName() {
@@ -99,7 +100,7 @@ public class BankBranchInformation implements Serializable
      * 
      * @return
      */
-    public float getBranchInitialBalance() {
+    public double getBranchInitialBalance() {
         return bankBranchInitialBalance;
     }
     
@@ -107,7 +108,7 @@ public class BankBranchInformation implements Serializable
      * 
      * @return
      */
-    public float getBranchWorkingBalance() {
+    public double getBranchWorkingBalance() {
         return bankBranchWorkingBalance;
     }
 }
