@@ -19,7 +19,6 @@ public class ShapeListClient{
 				Registry registry = LocateRegistry.getRegistry(host, port);
 				ShapeList aList = (ShapeList) registry.lookup("ShapeList");
 				System.out.println("Found server");
-				
 				Vector<Shape> shapeVec = aList.allShapes();
 				System.out.println("Got vector");
 				if(option.equals("read")){

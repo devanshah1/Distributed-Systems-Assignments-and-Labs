@@ -10,29 +10,21 @@ public class GraphicalObject implements Serializable {
 	public Color fill;
 	public boolean isFilled;
 
-	public String candidateName ;
-    public int votersId ;
-    
-    public GraphicalObject() {}
-    
-    /**
-     * 
-     * @param candidate
-     * @param voterID
-     */
-    public ElectionResults ( String candidate, int voterID ) 
-    {
-        candidateName = candidate ;
-        votersId      = voterID ;
-    }
-    
-    /**
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString () 
-    {
-        return "   Candidate Name: " + candidateName + " Voter's ID: " + votersId ;
-    }
+	public GraphicalObject() {}
 	
+	public GraphicalObject(String t, Rectangle e, Color l, Color f, boolean x) {
+		type = t;
+		enclosing = e;
+		line = l;
+		fill = f;
+		isFilled = x;
+	}
+
+	public void print() {
+		System.out.print(type + " ");
+		System.out.print(enclosing.x + ", " + enclosing.y + ", " + enclosing.width
+			+ ", " + enclosing.height + " ");
+		if(isFilled) System.out.println("filled"); 
+		else System.out.println("not filled");
+	}
 }
