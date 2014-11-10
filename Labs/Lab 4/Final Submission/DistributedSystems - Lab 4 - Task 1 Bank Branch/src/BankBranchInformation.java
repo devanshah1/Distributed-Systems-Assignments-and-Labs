@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 /**
+ * This class is used to store the information of a bank branch.
  * @author Devan Shah 100428864
  *
  */
@@ -18,31 +19,29 @@ public class BankBranchInformation implements Serializable
     double bankBranchInitialBalance;
     double bankBranchWorkingBalance;
     int bankBranchNumber;
-    int bankBranchPortNumber;
     
     /**
-     *  Constructor for the BankBranchInformation class.
-     *  This constructor is used to initialize global object variables. 
-     * @param bankBranchName     - Name of the branch
-     * @param bankBranchNumber   - The branches ID numer
-     * @param bankBranchLocation - The location of the branch
-     * @param bankBranchBalance  - The initial balnce the branch has at start.
+     * Constructor for the BankBranchInformation class.
+     * This constructor is used to initialize global object variables.
+     * @param bankBranchName            - Name of the branch
+     * @param bankBranchNumber          - The branch ID number
+     * @param bankBranchLocation        - The location of the branch
+     * @param bankBranchInitialBalance  - THe initial balance the branch has to start with.
      */
-    public BankBranchInformation( String bankBranchName, int bankBranchNumber, String bankBranchLocation, double bankBranchInitialBalance, int portNumber) 
+    public BankBranchInformation( String bankBranchName, int bankBranchNumber, String bankBranchLocation, double bankBranchInitialBalance) 
     {
         // Store values in the global variable
         this.bankBranchName            = bankBranchName;
         this.bankBranchNumber          = bankBranchNumber;
         this.bankBranchLocation        = bankBranchLocation;
         this.bankBranchInitialBalance  = bankBranchInitialBalance;
-        this.bankBranchPortNumber      = portNumber;
         
         // On Object initialization set the initial balance to the working balance
         this.bankBranchWorkingBalance  = bankBranchInitialBalance;
     }
     
     /**
-     * This functions is used to provide description of the bank branch
+     * This functions is used to provide description of the bank branch.
      */
     @Override
     public String toString() 
@@ -75,50 +74,42 @@ public class BankBranchInformation implements Serializable
     }
     
     /**
-     * Return the branch name
-     * @return
+     * Return the bank branch name
+     * @return bankBranchName - name of this  branch
      */
     public String getBranchName() {
         return bankBranchName;
     }
     
     /**
-     * 
-     * @return
+     * Return the branch number of a branch.
+     * @return bankBranchNumber - branch number of this branch
      */
     public int getBranchNumber() {
         return bankBranchNumber;
     }
     
     /**
-     * 
-     * @return
+     * Return the location of a branch.
+     * @return bankBranchLocation - location of this branch
      */
     public String getBranchLocation() {
         return bankBranchLocation;
     }
     
     /**
-     * 
-     * @return
+     * Return the initial balance of a branch.
+     * @return bankBranchInitialBalance - initial balance of this branch
      */
     public double getBranchInitialBalance() {
         return bankBranchInitialBalance;
     }
     
     /**
-     * 
-     * @return
+     * Return the working balance of the branch.
+     * @return bankBranchWorkingBalance - working balance of this branch
      */
     public double getBranchWorkingBalance() {
         return bankBranchWorkingBalance;
-    }
-    
-    /**
-     * 
-     * @return
-     */
-    public int getBranchPortNumber() {
-        return bankBranchPortNumber;
     }
 }
