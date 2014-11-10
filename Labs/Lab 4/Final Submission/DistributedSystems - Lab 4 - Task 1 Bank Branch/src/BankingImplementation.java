@@ -4,29 +4,21 @@
  * @author Devan Shah 100428864
  *
  */
-public class BankingImplementation implements BankingInterface
+public class BankingImplementation
 {
     boolean sendReceiveFlag = false ;
     double amount;
-<<<<<<< HEAD
     String branchNameSender;
-    int branchSenderPortNumber;
-=======
->>>>>>> parent of 721161d... Lab 4 - Task 1 Sort of working with Threads
     
     /**
      * 
      * @param amount
      * @param branchNameSender
      */
-    public synchronized void send ( double amount, String branchNameSender, int portNumber )
+    public synchronized void send ( double amount, String branchNameSender )
     {
-<<<<<<< HEAD
         this.branchNameSender = branchNameSender;
-        this.branchSenderPortNumber = portNumber;
         
-=======
->>>>>>> parent of 721161d... Lab 4 - Task 1 Sort of working with Threads
         if (sendReceiveFlag) 
         {
             try 
