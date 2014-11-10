@@ -26,6 +26,7 @@ public class BankBranch implements Runnable
     {
         int timeInterval = Util.randomTimeInterval ();
         double transferAmount = Util.randomAmount (0.0, 1000.0);
+        long sendingTime = System.currentTimeMillis();
         
         try
         {
@@ -55,16 +56,17 @@ public class BankBranch implements Runnable
             }
             
             // Once the registry is successfully created, rebind the ElectionInterface to the remote reference created above.
-            registry.rebind ( "BankingInterface", bankingAcceptor ) ;
+            registry.rebind ( "ElectionInterface", bankingAcceptor ) ;
         }
         // Catch any exceptions and notify the user with detailed information.
         catch ( Exception e ) { System.err.println ( "ElectionServer Exceptions: " + e.getMessage () ) ; e.printStackTrace () ; }
     
         while (true) 
         {
-            long sendingTime = new Date().getTime ();
+            long currentTime = System.currentTimeMillis();
+            long waitingTime = sendingTime + (timeInterval*1000);
             
-            if ( sendingTime > ( sendingTime + timeInterval ) )
+            if ( currentTime >= waitingTime && !branchCommunicator.sendReceiveFlag )
             {
 //                bankBranchInformation.subtractFromWorkingBalance ( transferAmount );
 //                branchCommunicator.send ( transferAmount, bankBranchInformation.bankBranchName );
@@ -79,7 +81,7 @@ public class BankBranch implements Runnable
                     
                     // Find and initialize the election interface for casting votes and retrieving results.
                     BankingInterface BankingClient = ( BankingInterface ) registry.lookup ( "BankingInterface" ) ;
-                    BankingClient.send ( transferAmount, bankBranchInformation.bankBranchName, portnumber );
+                    BankingClient.send ( transferAmount, bankBranchInformation.bankBranchName, port );
                 }
                 // Catch the exception and provide the necessary information to the user.
                 catch ( RemoteException e ) { System.out.println ( "Remote Exception: " + e.getMessage() ) ; e.printStackTrace () ; }
@@ -87,8 +89,8 @@ public class BankBranch implements Runnable
                 
                 timeInterval = Util.randomTimeInterval ();
                 transferAmount = Util.randomAmount (0.0, 1000.0);
+                sendingTime = new Date().getTime ();
             }
-<<<<<<< HEAD
             else if (branchCommunicator.sendReceiveFlag && !branchCommunicator.branchNameSender.equals ( bankBranchInformation.bankBranchName ))
             {
 //                bankBranchInformation.addToWorkingBalance( branchCommunicator.receive (bankBranchInformation.bankBranchName ));
@@ -99,15 +101,7 @@ public class BankBranch implements Runnable
                 }
                 catch ( RemoteException e ) { e.printStackTrace(); }
                 System.out.println(bankBranchInformation.toString ());
-=======
-            else {
-                bankBranchInformation.addToWorkingBalance( branchCommunicator.receive (bankBranchInformation.bankBranchName ));
->>>>>>> parent of 721161d... Lab 4 - Task 1 Sort of working with Threads
             }
-            
-            System.out.println(bankBranchInformation.toString ());
-            
-            break;
         }
     }
 }
