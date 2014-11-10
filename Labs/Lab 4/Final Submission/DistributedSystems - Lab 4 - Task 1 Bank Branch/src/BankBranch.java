@@ -26,7 +26,6 @@ public class BankBranch implements Runnable
     {
         int timeInterval = Util.randomTimeInterval ();
         double transferAmount = Util.randomAmount (0.0, 1000.0);
-        long sendingTime = System.currentTimeMillis();
         
         try
         {
@@ -63,10 +62,9 @@ public class BankBranch implements Runnable
     
         while (true) 
         {
-            long currentTime = System.currentTimeMillis();
-            long waitingTime = sendingTime + (timeInterval*1000);
+            long sendingTime = new Date().getTime ();
             
-            if ( currentTime >= waitingTime && !branchCommunicator.sendReceiveFlag )
+            if ( sendingTime > ( sendingTime + timeInterval ) )
             {
 //                bankBranchInformation.subtractFromWorkingBalance ( transferAmount );
 //                branchCommunicator.send ( transferAmount, bankBranchInformation.bankBranchName );
@@ -89,8 +87,8 @@ public class BankBranch implements Runnable
                 
                 timeInterval = Util.randomTimeInterval ();
                 transferAmount = Util.randomAmount (0.0, 1000.0);
-                sendingTime = new Date().getTime ();
             }
+<<<<<<< HEAD
             else if (branchCommunicator.sendReceiveFlag && !branchCommunicator.branchNameSender.equals ( bankBranchInformation.bankBranchName ))
             {
 //                bankBranchInformation.addToWorkingBalance( branchCommunicator.receive (bankBranchInformation.bankBranchName ));
@@ -101,7 +99,15 @@ public class BankBranch implements Runnable
                 }
                 catch ( RemoteException e ) { e.printStackTrace(); }
                 System.out.println(bankBranchInformation.toString ());
+=======
+            else {
+                bankBranchInformation.addToWorkingBalance( branchCommunicator.receive (bankBranchInformation.bankBranchName ));
+>>>>>>> parent of 721161d... Lab 4 - Task 1 Sort of working with Threads
             }
+            
+            System.out.println(bankBranchInformation.toString ());
+            
+            break;
         }
     }
 }
