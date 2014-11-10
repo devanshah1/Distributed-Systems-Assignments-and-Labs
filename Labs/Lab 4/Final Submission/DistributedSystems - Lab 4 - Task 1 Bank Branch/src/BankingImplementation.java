@@ -8,6 +8,7 @@ public class BankingImplementation
 {
     boolean sendReceiveFlag = false ;
     double amount;
+    String branchNameSender;
     
     /**
      * 
@@ -16,6 +17,8 @@ public class BankingImplementation
      */
     public synchronized void send ( double amount, String branchNameSender )
     {
+        this.branchNameSender = branchNameSender;
+        
         if (sendReceiveFlag) 
         {
             try 
