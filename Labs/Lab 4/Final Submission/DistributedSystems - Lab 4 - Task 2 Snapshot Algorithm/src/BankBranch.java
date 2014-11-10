@@ -51,11 +51,25 @@ public class BankBranch implements Runnable
             // When the current time has exceeded the waiting time start sending money to a random branch.
             if ( currentTime >= waitingTime && !branchCommunicator.sendReceiveFlag )
             {
+                if ( branchCommunicator.recordedState == null && !branchCommunicator.recordedStates ) 
+                {
+                    branchCommunicator.recordedState = new SnapshotMarker(bankBranchInformation.bankBranchInitialBalance, 0.0);
+                    branchCommunicator.recordedStates = true;
+                    System.out.println ( bankBranchInformation.bankBranchName + " sending marker."  ) ;
+                }
+                else {
+                    branchCommunicator.recordedState.setInTransit ( transferAmount );
+                }
+                bankBranchInformation.inTransit = 0.0;
+                
+                System.out.println(bankBranchInformation.toString ());
+                
                 // Before sending the money make sure to subtract from the current branch.
                 bankBranchInformation.subtractFromWorkingBalance ( transferAmount );
-                
+                bankBranchInformation.inTransit = transferAmount;
                 // Send the money through the branch communication channel for any branch to pick up. (considered random)
                 branchCommunicator.send ( transferAmount, bankBranchInformation.bankBranchName );
+                
                 System.out.println(bankBranchInformation.toString ());
                 
                 // Grab New random numbers to send out, in the next send.

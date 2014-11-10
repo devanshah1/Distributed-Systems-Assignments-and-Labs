@@ -19,6 +19,7 @@ public class BankBranchInformation implements Serializable
     double bankBranchInitialBalance;
     double bankBranchWorkingBalance;
     int bankBranchNumber;
+    double inTransit;
     
     /**
      * Constructor for the BankBranchInformation class.
@@ -50,10 +51,12 @@ public class BankBranchInformation implements Serializable
         String branchDescription = "-----------------------------------------------------------" + "\n" +
                                    "         Branch \"" + bankBranchName + "\" Updated information   " + "\n" +
                                    "-----------------------------------------------------------" + "\n" +
-                                   "      Branch ID Number:       " + bankBranchNumber + "\n" +
-                                   "      Branch Location:        " + bankBranchLocation + "\n" +
+                                 //"      Branch ID Number:       " + bankBranchNumber + "\n" +
+                                 //"      Branch Location:        " + bankBranchLocation + "\n" +
                                    "      Branch Initial Balance: " + bankBranchInitialBalance + "\n" +
-                                   "      Branch Current Balance: " + bankBranchWorkingBalance; 
+                                   "      Updated Balance: " + bankBranchWorkingBalance + "\n" +
+                                   "      Amount in Transit: " + inTransit + "\n" +
+                                   "      Total amount: " + (bankBranchWorkingBalance + inTransit) + "\n";
         return branchDescription;
         
     }

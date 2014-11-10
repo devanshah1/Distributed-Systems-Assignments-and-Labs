@@ -50,10 +50,10 @@ public class BankBranchInformation implements Serializable
         String branchDescription = "-----------------------------------------------------------" + "\n" +
                                    "         Branch \"" + bankBranchName + "\" Updated information   " + "\n" +
                                    "-----------------------------------------------------------" + "\n" +
-                                   "      Branch ID Number:       " + bankBranchNumber + "\n" +
-                                   "      Branch Location:        " + bankBranchLocation + "\n" +
+                                 //"      Branch ID Number:       " + bankBranchNumber + "\n" +
+                                 //"      Branch Location:        " + bankBranchLocation + "\n" +
                                    "      Branch Initial Balance: " + bankBranchInitialBalance + "\n" +
-                                   "      Branch Current Balance: " + bankBranchWorkingBalance; 
+                                   "      Updated Balance: " + bankBranchWorkingBalance; 
         return branchDescription;
         
     }

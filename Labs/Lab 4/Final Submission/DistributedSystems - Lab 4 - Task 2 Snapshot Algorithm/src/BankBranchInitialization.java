@@ -13,6 +13,7 @@ public class BankBranchInitialization
     // Stores the important information for the branch
     public static BankBranchInformation BranchOneInformation;
     public static BankBranchInformation BranchTwoInformation;
+    //public static BankBranchInformation BranchThreeInformation;
     
     // Stores the communication medium for the branches (send and receive money)
     public static BankingImplementation BranchCommunicator;
@@ -30,6 +31,7 @@ public class BankBranchInitialization
         // Create bank branch information objects
         BranchOneInformation = new BankBranchInformation ( "BranchOne", 1234, "Jane & Western", 2000.45);
         BranchTwoInformation = new BankBranchInformation ( "BranchTwo", 5678, "King Street & Simcoe Street North", 2345.34);
+        //BranchThreeInformation = new BankBranchInformation ( "BranchThree", 21343, "King Str2eet & Simcoe Street North", 12345.34);
         
         // Create the banking communication object
         BranchCommunicator = new BankingImplementation() ;
@@ -37,10 +39,12 @@ public class BankBranchInitialization
         // Create the main bank branch objects, with each of the branch information objects and the same communication object.
         BankBranch BranchOne = new BankBranch ( BranchOneInformation, BranchCommunicator );
         BankBranch BranchTwo = new BankBranch ( BranchTwoInformation, BranchCommunicator );
+        //BankBranch BranchThree = new BankBranch ( BranchThreeInformation, BranchCommunicator );
         
         // Place the bank branches in a thread containers, with a thread name matching the branch name
         threads.add ( new Thread ( BranchOne, BranchOne.bankBranchInformation.bankBranchName  ) ) ;
         threads.add ( new Thread ( BranchTwo, BranchTwo.bankBranchInformation.bankBranchName ) ) ;
+        //threads.add ( new Thread ( BranchThree, BranchThree.bankBranchInformation.bankBranchName ) ) ;
         
         // Start counting how long it will take to run the producing and consuming
         long start = System.currentTimeMillis () ;

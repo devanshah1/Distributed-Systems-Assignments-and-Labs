@@ -10,6 +10,8 @@ public class BankingImplementation
     boolean sendReceiveFlag = false ;
     double amount;
     String branchNameSender;
+    SnapshotMarker recordedState;
+    boolean recordedStates = false;
     
     /**
      * This function is used to send the money to a branch from another branch.
