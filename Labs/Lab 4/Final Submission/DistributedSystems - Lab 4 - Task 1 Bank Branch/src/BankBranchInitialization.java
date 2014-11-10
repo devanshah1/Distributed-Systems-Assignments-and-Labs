@@ -14,8 +14,8 @@ public class BankBranchInitialization
         // Construct the array of threads that will be executed 
         List <Thread> threads = new ArrayList <Thread> () ;
         
-        BranchOneInformation = new BankBranchInformation ( "BranchOne", 1234, "Jane & Western", 2000.45 );
-        BranchTwoInformation = new BankBranchInformation ( "BranchTwo", 5678, "King Street & Simcoe Street North", 2345.34 );
+        BranchOneInformation = new BankBranchInformation ( "BranchOne", 1234, "Jane & Western", 2000.45, 1099 );
+        BranchTwoInformation = new BankBranchInformation ( "BranchTwo", 5678, "King Street & Simcoe Street North", 2345.34, 1100 );
         BranchCommunicator = new BankingImplementation() ;
         
         BankBranch BranchOne = new BankBranch(BranchOneInformation, BranchCommunicator);

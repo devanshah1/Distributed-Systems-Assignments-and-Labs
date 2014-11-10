@@ -7,21 +7,20 @@ import java.rmi.RemoteException;
  */
 public interface BankingInterface extends Remote 
 {
-    /**
-     * 
-     * @param amount
-     * @param branchNameReceiver
-     * @param branchNameSender
-     * @throws RemoteException
-     */
-    public void send ( float amount, String branchNameReceiver, String branchNameSender ) throws RemoteException ;
     
     /**
      * 
      * @param amount
-     * @param branchNameReceiver
      * @param branchNameSender
      * @throws RemoteException
      */
-    public void receive ( float amount, String branchNameReceiver, String branchNameSender ) throws RemoteException ;
+    public void send ( double amount, String branchNameSender, int portNumber  ) throws RemoteException ;
+    
+    /**
+     * 
+     * @param branchNameReceiver
+     * @return
+     * @throws RemoteException
+     */
+    public double receive ( String branchNameReceiver ) throws RemoteException ;
 }

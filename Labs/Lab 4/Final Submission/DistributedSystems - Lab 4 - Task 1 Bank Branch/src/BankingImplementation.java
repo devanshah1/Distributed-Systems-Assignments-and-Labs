@@ -4,20 +4,22 @@
  * @author Devan Shah 100428864
  *
  */
-public class BankingImplementation
+public class BankingImplementation implements BankingInterface
 {
     boolean sendReceiveFlag = false ;
     double amount;
     String branchNameSender;
+    int branchSenderPortNumber;
     
     /**
      * 
      * @param amount
      * @param branchNameSender
      */
-    public synchronized void send ( double amount, String branchNameSender )
+    public synchronized void send ( double amount, String branchNameSender, int portNumber )
     {
         this.branchNameSender = branchNameSender;
+        this.branchSenderPortNumber = portNumber;
         
         if (sendReceiveFlag) 
         {

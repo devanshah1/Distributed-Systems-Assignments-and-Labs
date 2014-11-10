@@ -18,6 +18,7 @@ public class BankBranchInformation implements Serializable
     double bankBranchInitialBalance;
     double bankBranchWorkingBalance;
     int bankBranchNumber;
+    int bankBranchPortNumber;
     
     /**
      *  Constructor for the BankBranchInformation class.
@@ -27,13 +28,14 @@ public class BankBranchInformation implements Serializable
      * @param bankBranchLocation - The location of the branch
      * @param bankBranchBalance  - The initial balnce the branch has at start.
      */
-    public BankBranchInformation( String bankBranchName, int bankBranchNumber, String bankBranchLocation, double bankBranchInitialBalance) 
+    public BankBranchInformation( String bankBranchName, int bankBranchNumber, String bankBranchLocation, double bankBranchInitialBalance, int portNumber) 
     {
         // Store values in the global variable
         this.bankBranchName            = bankBranchName;
         this.bankBranchNumber          = bankBranchNumber;
         this.bankBranchLocation        = bankBranchLocation;
         this.bankBranchInitialBalance  = bankBranchInitialBalance;
+        this.bankBranchPortNumber      = portNumber;
         
         // On Object initialization set the initial balance to the working balance
         this.bankBranchWorkingBalance  = bankBranchInitialBalance;
@@ -110,5 +112,13 @@ public class BankBranchInformation implements Serializable
      */
     public double getBranchWorkingBalance() {
         return bankBranchWorkingBalance;
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public int getBranchPortNumber() {
+        return bankBranchPortNumber;
     }
 }
