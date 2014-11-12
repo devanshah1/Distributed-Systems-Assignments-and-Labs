@@ -25,21 +25,24 @@ public class Counter
      */
     public synchronized void increaseCount() 
     {
-        // increment the counter by 1
-        counter++;
-        
-        /**
-         * Thread sleep is used at this point to simulate slow
-         * data processing and modifications of the counter 
-         * variable.
-         */
-        try
+        synchronized (this)
         {
-            // Sleep for 55 milliseconds, this was based on speed of my computer.
-            Thread.sleep(55);
+            // increment the counter by 1
+            counter++;
+            
+            /**
+             * Thread sleep is used at this point to simulate slow
+             * data processing and modifications of the counter 
+             * variable.
+             */
+            try
+            {
+                // Sleep for 55 milliseconds, this was based on speed of my computer.
+                Thread.sleep(55);
+            }
+            // Catch the exception and provide the necessary information to the user.
+            catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }   
         }
-        // Catch the exception and provide the necessary information to the user.
-        catch ( InterruptedException e ) { System.out.println ( "Interrupted Exception detected: " + e.getMessage () ) ; e.printStackTrace () ; }
     }
     
     /**
