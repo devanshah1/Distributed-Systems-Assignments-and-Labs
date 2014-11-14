@@ -6,7 +6,7 @@ import java.util.List;
  * @author Devan Shah 100428864
  *
  */
-public class CountingThreadInitializers
+public class CountingThreadInit
 {
     /**
      * This is the main function that is used to construct the threads
