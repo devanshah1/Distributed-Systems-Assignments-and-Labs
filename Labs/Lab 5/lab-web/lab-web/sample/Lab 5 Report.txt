@@ -1,0 +1,16 @@
+Part 1:
+	Can you explain the observations Step 6? Use the source code lab-web/sample/HelloWorld.java in your explanation.
+		http://localhost:4567/hello
+			When this link was accessed "Hello World." was displayed in the web broswer. This is displayed with the use code in lab-web/sample/HelloWorld.java, this code is using Spark to listen for requests on the localhost port. The reason that string "Hello World." is displayed due the multil-setp get blocks which has assigned /hello to display "Hello World." when called from http://localhost:4567/. This is done with the use of the req resp. 
+
+		http://localhost:4567/add?a=3.1415&b=10.0
+			When this link was accessed "3.1415 + 10.0 = 13.1415" was displayed in the web broswer. The HelloWorld.java code uses a req resc structure using Spark to attach on the localhost:4567 and listen and respons to the number of get. In this case using "/add" to perform a compuation of 2 numbers. The code uses req to get the parems that are passed in with the /add and perform an add operator on the 2 parameters and dispaly the results with the question also. 
+
+		http://localhost:4567/
+			When this link was accessed "404 Not found The requested route [/] has not been mapped in Spark" was displayed in the web broswer. This is displayed because there are no routes for the root "/". This is the default message that is printed by Spark in the case that they are not mapped.
+
+
+		Created files compileLabWeb.cmd runLabWeb.cmd with CLASSPATH and the command to compile and to run respectly.
+
+
+

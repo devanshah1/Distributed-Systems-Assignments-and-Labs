@@ -1,0 +1,63 @@
+PART I: Setup for development:
+	Can you explain the observations Step 6? Use the source code lab-web/sample/HelloWorld.java in your explanation.
+		http://localhost:4567/hello
+			When this link was accessed "Hello World." was displayed in the web broswer. This is displayed with the use code in lab-web/sample/HelloWorld.java, this code is using Spark to listen for requests on the default localhost port. The string "Hello World." is displayed due the multil-setp get blocks which has assigned /hello to display "Hello World." when called from http://localhost:4567/. 
+
+		http://localhost:4567/add?a=3.1415&b=10.0
+			When this link was accessed "3.1415 + 10.0 = 13.1415" was displayed in the web broswer. The HelloWorld.java code uses a req resc structure using Spark to attach on the localhost:4567 and listen/respond to the numbers of get defined in the java code. In this case using "/add" to perform a compuation of 2 numbers. The code uses req to get the parems that are passed in with the /add and perform an add operator on the 2 parameters and dispaly the results with the question also. The way that the parameters are passed in it makes it easy for spark to pick up on the parameters based on the name, for example: a=3.1415 in this case spark knows that a will have a value of 3.1415 the same goes for b and multiple parameters can be passed in with the use of & operation.
+
+		http://localhost:4567/
+			When this link was accessed "404 Not found The requested route [/] has not been mapped in Spark" was displayed in the web broswer. This is displayed because there are no routes for the root "/". This is the default message that is printed by Spark in the case that they are not mapped.
+
+
+		Created files compileLabWeb.cmd runLabWeb.cmd with CLASSPATH and the command to compile and to run respectly.
+
+		http://localhost:4567/add?a=3.1415&b=10.0
+		http://localhost:4567/hello
+		http://localhost:4567/
+
+		New Implementaion 
+			Some general things 
+				http://localhost:4567/hello/devan
+				http://localhost:4567/say/hello/to/devan
+
+			Looking at protected sites with autentication and unauthentication
+				http://localhost:4567/protected/hello
+				http://localhost:4567/authenticate
+				http://localhost:4567/protected/hello
+				http://localhost:4567/unauthenticate
+				http://localhost:4567/protected/hello
+
+			Reading a file form the computer's file system
+				http://localhost:4567/Lab_5_Report.txt
+
+PART II: Benchmarking using ab.exe
+	Rank the response times of each of your URL paths of your Web application from the slowest to the fastest.
+		Command: ab –n 500 “http://localhost:4567
+				 
+				 ab –n 500 "http://localhost:4567/add?a=3.1415&b=10.0"  0.419987
+				 ab –n 500 "http://localhost:4567/hello"
+				 ab –n 500 "http://localhost:4567/"
+				 ab –n 500 "http://localhost:4567/protected/hello"
+				 ab –n 500 "http://localhost:4567/authenticate"
+				 ab –n 500 "http://localhost:4567/protected/hello"
+				 ab –n 500 "http://localhost:4567/unauthenticate"
+				 ab –n 500 "http://localhost:4567/protected/hello"
+				 ab –n 500 "http://localhost:4567/Lab_5_Report.txt"
+
+		Explain the performance differences you see
+			ab –n 500 –c 10 http://localhost:4567/add?a=3.1415&b=10.0
+			ab –n 500 –c 10 http://localhost:4567/hello
+			ab –n 500 –c 10 http://localhost:4567/
+			ab –n 500 –c 10 http://localhost:4567/protected/hello
+			ab –n 500 –c 10 http://localhost:4567/authenticate
+			ab –n 500 –c 10 http://localhost:4567/protected/hello
+			ab –n 500 –c 10 http://localhost:4567/unauthenticate
+			ab –n 500 –c 10 http://localhost:4567/protected/hello
+			ab –n 500 –c 10 http://localhost:4567/Lab_5_Report.txt
+
+		What does concurrent sessions do to the response time?
+
+		By increasing the concurrency 1, 2, 3, 4, 5, 6, …, if we want to achieve a response time of 5 sec or less, what is the maximum number of concurrent sessions your Web application can support?
+
+		Using ideas of distributed systems, offer solutions to scale up your Web applications to support increasing traffic demand while still maintaining responsiveness of key URL paths of the application.
